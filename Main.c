@@ -53,6 +53,9 @@ int32_t main(const int32_t argc, char const * agrv[])
     printf(" Lista de elementos Impares\n");
     Elements(ParImparList.Impares);
 
+    printf(" Capacidad: %lu", list->Capacity);
+    printf(" Size: %lu", list->Size);
+
     ListDestroy(ParImparList.Pares);
     ListDestroy(ParImparList.Impares);
     ListDestroy(list);
@@ -76,7 +79,7 @@ ListPointer ListNew()
 
     //(int32_t*)malloc(list->Capacity * sizeof(int32_t*)) -> Está retornando un array de punteros de enteros
 
-    list->Data = (int32_t*)malloc(list->Capacity * sizeof(int32_t));
+    list->Data = (int32_t*)malloc((list->Capacity) * sizeof(int32_t));
 
     return list;
 }
@@ -92,7 +95,7 @@ void ListAdd(ListPointer list_pointer, int32_t value)
         int32_t new_capacity = (list_pointer->Capacity) * 2;
         int32_t *aux = NULL;
 
-        aux = (int32_t*)malloc(list_pointer->Capacity * sizeof(int32_t));
+        aux = (int32_t*)malloc(new_capacity * sizeof(int32_t));
 
         for (size_t i = 0; i < list_pointer->Size; ++i)
         {
